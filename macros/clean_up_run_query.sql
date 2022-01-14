@@ -1,17 +1,17 @@
 {% macro clean_up_run(db_name, no_days) %}
-{% set query_sch %}
+{%- set query_sch %}
     SELECT DISTINCT schema_name
     FROM {{db_name}}.INFORMATION_SCHEMA.schemata
     WHERE schema_name ilike '%S%'
     AND to_date(created) < current_date() - {{no_days}}
-{% endset %}
+{% endset -%}
 {%- set results = run_query(query_sch) %}
-{% if execute %}
+{%- if execute -%}
 {# Return the first column #}
 {% set results_list = results.columns[0].values() %}
 {% else %}
 {% set results_list = [] %}
-{% endif %}
+{%- endif -%}
 {%- for sch in results_list %}
 DROP SCHEMA {{db_name}}.{{sch}};
 {%- endfor %}
