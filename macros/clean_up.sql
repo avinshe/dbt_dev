@@ -1,16 +1,17 @@
 {% macro clean_up(schema_name, no_days) %}
 
-{% set query %}
+{%- call statement('dist_sch_name', fetch_result=True) -%}
+
     SELECT DISTINCT schema_name
     FROM {{schema_name}}.INFORMATION_SCHEMA.schemata
     WHERE schema_name ilike '%S%'
     AND to_date(created) < current_date() - {{no_days}}
-{% endset %}
 
-{% set results = run_query(query) %}
-{% set results_list = results.rows %}
+{%- endcall -%}
 
-{% for sch in results_list %}
+{%- set dist_sch = load_result('dist_sch_name')['data'] -%}
+
+{% for sch in dist_sch %}
 {{sch}}
 {% endfor %}
 
