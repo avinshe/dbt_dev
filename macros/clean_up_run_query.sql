@@ -9,5 +9,6 @@
 
 {% endset %}
 {%- set results = run_query(query_sch) %}
-{{ return(results) }}
+ {% set results_list = results.columns.values() %}
+{{ return(results_list) }}
 {% endmacro %}
