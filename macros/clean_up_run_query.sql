@@ -16,7 +16,7 @@
 {% set results_list = [] %}
 {% endif %}
 
-{% for sch in results_list %}
+{% for sch in results_list -%}
 DROP SCHEMA {{db_name}}.{{sch}};
-{% endfor %}
+{%- endfor %}
 {% endmacro %}
