@@ -13,7 +13,7 @@
 
 {% for sch in dist_sch %}
 {% set sch_str = sch|string %}
-{{sch_str[2:]}}
+{{sch_str[2:-3]}}
 DROP SCHEMA {{schema_name}}.{{sch}};
 {% endfor %}
 
