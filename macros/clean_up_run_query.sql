@@ -1,4 +1,4 @@
-{% macro clean_up(db_name, no_days) %}
+{% macro clean_up_run(db_name, no_days) %}
 
 {% set query_sch %}
 
