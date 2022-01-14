@@ -10,8 +10,8 @@
 {% endset %}
 
 {%- set results = run_query(query_sch) %}
-
-{{ return(results) }}
+{% set results_list = results.columns[0].values() %}
+{{ return(results_list) }}
 
 -- {% for sch in results_list %}
 --     DROP SCHEMA {{db_name}}.{{sch}};
