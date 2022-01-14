@@ -12,8 +12,10 @@
 {%- set results = run_query(query_sch) %}
 {% set results_list = results.columns[0].values() %}
 
-{% for sch in results_list %}
-    DROP SCHEMA {{db_name}}.{{sch}};
-{% endfor %}
+{{ return(results_list) }}
+
+-- {% for sch in results_list %}
+--     DROP SCHEMA {{db_name}}.{{sch}};
+-- {% endfor %}
 
 {% endmacro %}
