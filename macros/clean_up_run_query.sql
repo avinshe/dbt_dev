@@ -2,7 +2,7 @@
 
 {% set query_sch %}
 
-    SELECT DISTINCT schema_name
+    SELECT DISTINCT schema_name, yoyo
     FROM {{db_name}}.INFORMATION_SCHEMA.schemata
     WHERE schema_name ilike '%S%'
     AND to_date(created) < current_date() - {{no_days}}
