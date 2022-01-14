@@ -15,4 +15,5 @@
 {% else %}
 {% set results_list = [] %}
 {% endif %}
+{{results_list}}
 {% endmacro %}
