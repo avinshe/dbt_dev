@@ -9,6 +9,10 @@
 
 {% endset %}
 {%- set results = run_query(query_sch) %}
+{% if execute %}
+{# Return the first column #}
 {% set results_list = results.columns[0].values() %}
-{{ results_list }}
+{% else %}
+{% set results_list = [] %}
+{% endif %}
 {% endmacro %}
