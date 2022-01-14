@@ -1,9 +1,9 @@
-{% macro clean_up(schema_name, no_days) %}
+{% macro clean_up(db_name, no_days) %}
 
 {%- call statement('dist_sch_name', fetch_result=True) -%}
 
     SELECT DISTINCT schema_name
-    FROM {{schema_name}}.INFORMATION_SCHEMA.schemata
+    FROM {{db_name}}.INFORMATION_SCHEMA.schemata
     WHERE schema_name ilike '%S%'
     AND to_date(created) < current_date() - {{no_days}}
 
@@ -13,8 +13,7 @@
 
 {% for sch in dist_sch %}
 {% set sch_str = sch|string %}
-{{sch_str[2:-3]}}
-DROP SCHEMA {{schema_name}}.{{sch}};
+DROP SCHEMA {{db_name}}.{{sch_str[2:-3]}};
 {% endfor %}
 
 {% endmacro %}
