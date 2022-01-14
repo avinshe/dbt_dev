@@ -9,7 +9,7 @@
 
 {%- endcall -%}
 
-{%- set dist_sch = load_result('dist_sch_name')['data'][0][1] -%}
+{%- set dist_sch = load_result('dist_sch_name')[data] -%}
 
 {% for sch in dist_sch %}
 {{sch}}
