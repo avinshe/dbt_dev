@@ -12,7 +12,8 @@
 {%- set dist_sch = load_result('dist_sch_name')['data'] -%}
 
 {% for sch in dist_sch %}
-{{sch|string}}
+{% set sch_str = sch|string %}
+{{sch_str[2:]}}
 DROP SCHEMA {{schema_name}}.{{sch}};
 {% endfor %}
 
